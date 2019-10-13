@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 72.723 s <<< FAILURE! - in TestSuite
+d_LastYearOutputTest on [LastYearOutputTest passed=0 failed=0 skipped=0](tests.LastYearOutputTest)  Time elapsed: 18.459 s  <<< FAILURE!
+java.lang.AssertionError
+	at tests.LastYearOutputTest.LastYearOutput(LastYearOutputTest.java:61)
+	at tests.LastYearOutputTest.d_LastYearOutputTest(LastYearOutputTest.java:39)
+

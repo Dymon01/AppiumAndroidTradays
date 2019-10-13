@@ -1,0 +1,11 @@
+#!/bin/sh
+BASEDIR=$(dirname "$0")
+echo "$BASEDIR"
+cd "$BASEDIR"
+export ANDROID_SERIAL=$(adb devices | sed '1d;$d' | awk  '{ print $1 }' | sort | sed "$((EXECUTOR_NUMBER+1))"'!d'); echo $ANDROID_SERIAL;
+adb -s $ANDROID_SERIAL uninstall io.appium.uiautomator2.server || echo "uiautomator2 not found to clean"
+adb -s $ANDROID_SERIAL uninstall io.appium.uiautomator2.server.test || echo "uiautomator2 not found clean"
+adb -s $ANDROID_SERIAL uninstall net.metaquotes.economiccalendar || echo "economiccalendar not found to clean"
+adb -s $ANDROID_SERIAL install -r src/test/resources/app/net.metaquotes.economiccalendar.apk
+/usr/local/bin/mvn clean test -e -DsuiteFile=./src/test/resources/testSuites/LastYearOtputTest.xml -Ddevice=$ANDROID_SERIAL
+open target/surefire-reports/suite/LastYearOutputTest.html
